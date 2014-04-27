@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>ejb3study-ejb</artifactId>
 	<packaging>ejb</packaging>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -21,8 +21,14 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>ejb3study-api</artifactId>
