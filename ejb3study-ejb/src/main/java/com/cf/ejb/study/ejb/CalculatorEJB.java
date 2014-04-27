@@ -1,5 +1,7 @@
 package com.cf.ejb.study.ejb;
 
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
 import com.cf.ejb.study.api.CalculatorLocalBusiness;
@@ -20,6 +22,10 @@ import com.cf.ejb.study.api.CalculatorRemoteBusiness;
 @Stateless
 public class CalculatorEJB implements CalculatorRemoteBusiness, CalculatorLocalBusiness {
 
+    @Resource
+    private SessionContext sessionCtxt;
+
+    @Override
     public int add(int... arguments) {
         int result = 0;
         for (int arg : arguments) {
@@ -28,4 +34,13 @@ public class CalculatorEJB implements CalculatorRemoteBusiness, CalculatorLocalB
         return result;
     }
 
+    @Override
+    public String obtainSessionContext() {
+        StringBuffer result = new StringBuffer();
+        result.append("SessionContext: " + sessionCtxt);
+        result.append("\ngetBusinessObject(CalculatorLocalBusiness): " + sessionCtxt.getBusinessObject(CalculatorLocalBusiness.class));
+        result.append("\ngetBusinessObject(CalculatorRemoteBusiness): " + sessionCtxt.getBusinessObject(CalculatorRemoteBusiness.class));
+        result.append("\ngetInvokedBusinessInterface" + sessionCtxt.getInvokedBusinessInterface());
+        return result.toString();
+    }
 }

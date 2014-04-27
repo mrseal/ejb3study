@@ -18,4 +18,6 @@ public interface CalculatorRemoteBusiness {
 
     int add(int... arguments);
 
+    String obtainSessionContext();
+
 }

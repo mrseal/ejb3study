@@ -23,4 +23,9 @@ public interface ClientRestResource {
     @Path("/request")
     Response sendRequest();
 
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/sessionContext")
+    Response getSessionContext();
+
 }

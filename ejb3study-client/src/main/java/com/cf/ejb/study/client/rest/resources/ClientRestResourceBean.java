@@ -31,4 +31,9 @@ public class ClientRestResourceBean implements ClientRestResource {
         }
         return Response.ok(result).build();
     }
+
+    @Override
+    public Response getSessionContext() {
+        return Response.ok(calculator.obtainSessionContext()).build();
+    }
 }
