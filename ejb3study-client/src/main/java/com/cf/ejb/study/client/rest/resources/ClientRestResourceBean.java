@@ -16,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.core.Response;
 
 import com.cf.ejb.study.api.CalculatorRemoteBusiness;
+import com.cf.ejb.study.stateful.api.FileTransferRemoteBusiness;
 
 @Stateless
 public class ClientRestResourceBean implements ClientRestResource {
@@ -36,4 +37,21 @@ public class ClientRestResourceBean implements ClientRestResource {
     public Response getSessionContext() {
         return Response.ok(calculator.obtainSessionContext()).build();
     }
+
+    // ------ Stateful Session Bean Example START ------
+    @EJB
+    FileTransferRemoteBusiness ftpBean;
+
+    @Override
+    public Response cd(String directory) {
+        ftpBean.cd(directory);
+        return Response.ok("cd successful, use pwd to check the current location").build();
+    }
+
+    @Override
+    public Response pwd() {
+        return Response.ok(ftpBean.pwd()).build();
+    }
+    // ------ Stateful Session Bean Example END ------
+
 }

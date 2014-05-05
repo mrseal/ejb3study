@@ -28,4 +28,16 @@ public interface ClientRestResource {
     @Path("/sessionContext")
     Response getSessionContext();
 
+    // ------ Stateful Session Bean Example START ------
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/cd")
+    Response cd(@QueryParam("dir") String directory);
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/pwd")
+    Response pwd();
+    // ------ Stateful Session Bean Example END ------
+
 }
